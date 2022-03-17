@@ -1,8 +1,27 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import React from 'react';
+import Head from 'next/head';
+import { ThemeProvider } from 'styled-components';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
+import { Center } from '../components/Center';
+import { GlobalStyle, theme } from '../shared/theme';
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle theme={theme} />
+      <Head>
+        <title>What's Next?!</title>
+      </Head>
+
+      <Header />
+      <main className="main">
+        <Center>
+          <Component {...pageProps} />
+        </Center>
+      </main>
+      <Footer />
+    </ThemeProvider>
+  );
 }
-
-export default MyApp
